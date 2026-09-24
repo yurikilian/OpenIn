@@ -67,7 +67,7 @@ Run `./install.sh` again to rebuild. Installed IDEs are detected when the extens
 - `OpenInApp/` — a small SwiftUI host app. It only shows whether the extension is enabled and links to its settings.
 - `OpenInFinderExtension/` — a [Finder Sync extension](https://developer.apple.com/documentation/findersync) that watches `/` and contributes the **Open in** menu. It hands the folder to the IDE with `NSWorkspace.open(_:withApplicationAt:configuration:)`.
 
-Finder Sync extensions must be sandboxed, and a sandboxed process can't ask Launch Services to open a folder it has no access to. The extension therefore uses the `com.apple.security.temporary-exception.files.absolute-path.read-only` entitlement for `/`. That's fine for a locally built app, but it means OpenIn can't be distributed through the Mac App Store as-is.
+Finder Sync extensions must be sandboxed, and a sandboxed process can't ask Launch Services to open a folder it has no access to. The extension therefore uses the `com.apple.security.temporary-exception.files.absolute-path.read-write` and `com.apple.security.temporary-exception.files.home-relative-path.read-write` entitlements for `/`. That's fine for a locally built app, but it means OpenIn can't be distributed through the Mac App Store as-is.
 
 ## Uninstall
 
